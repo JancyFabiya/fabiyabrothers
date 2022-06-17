@@ -1,0 +1,116 @@
+<section class="section" style="background-color: rgba(255, 191, 191, 1);">
+    <div class="row">
+      <div class=" col-12 col-md-12">
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+              aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+              aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+              aria-label="Slide 3"></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="images/table.jpg" class="d-block w-100" alt="..."
+                style="height: 600px; width: 800px;">
+              <div class="carousel-caption" id="carousel_id">
+                <h1 class="headline" style="color:rgb(248, 241, 241); font-weight: 500;">make your next event</h1>
+                <p class="paragraph1 "
+                  style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ; color: rgb(230, 214, 214); font-weight: 400px;">
+                 come alive
+
+                </p>
+                {{!-- <button type="button" class="btn"
+                  style="width: 100px; background-color: rgba(102, 22, 22, 1); color: white;">Boo</button> --}}
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="images/birthday.jpg" class="d-block w-100" alt="..."
+                style="height: 600px; width: 800px;">
+              <div class="carousel-caption" id="carousel_id">
+                <h1 class="headline" style="color:white; font-weight: 500;">Birthday</h1>
+                <p class="paragraph1 "
+                  style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ; color: white; font-weight: 400px;">
+                  ARE YOU LOOKING FOR SWEET, STYLISH AND DELICIOUS BIRTHDAY ??
+
+                </p>
+                {{!-- <button type="button" class="btn"
+                  style="width: 100px; background-color: rgba(102, 22, 22, 1); color: white;">Buy Now</button> --}}
+              </div>
+
+            </div>
+            <div class="carousel-item">
+              <img src="images/catering.jpg" class="d-block w-100" alt="..."
+                style="height: 600px; width: 800px;">
+              <div class="carousel-caption" id="carousel_id">
+                <h1 class="headline" style="color:white; font-weight: 500;">Quality Services</h1>
+                <p class="paragraph1 "
+                  style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ; color: white; font-weight: 400px;">
+                  ARE YOU LOOKING FOR SATISFIED, STYLISH AND STANDARED SERVICES??
+
+                </p>
+                {{!-- <button type="button" class="btn"
+                  style="width: 100px; background-color: rgba(102, 22, 22, 1); color: white;">Buy Now</button> --}}
+              </div>
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+    </div>
+</section>
+
+
+  
+    {{!-- <link rel='stylesheet' href='/stylesheets/button.css' /> --}}
+    {{!-- <div class="d-grid gap-2 d-md-flex justify-content-md-center pt-4"> --}}
+
+{{!-- {{#each eventtype}} --}}
+{{!-- <a href="/select_marriage/{{this._id}}" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">{{this.eventtype}}</a> --}}
+{{!-- <a href="#" class="btn btn-primary disabled" tabindex="-1" role="button" aria-disabled="true">Delux</a>
+<a href="#" class="btn btn-primary disabled" tabindex="-1" role="button" aria-disabled="true">Royal</a> --}}
+{{!-- {{/each}} --}}
+{{!-- <a href="#" class="btn btn-secondary disabled" tabindex="-1" role="button" aria-disabled="true">Link</a> --}}
+{{!-- </div> --}}
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-center pt-4">
+
+{{#each name}}
+<a href="/select_event/{{this._id}}" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">{{this.eventname}}</a>
+{{/each}}
+</div>
+{{!-- cards --}}
+ <section>
+        <div class="container my-5">
+          <div class="row">
+            {{#each selectedEvent}}
+              <div class="card col-md-3 m-2" style="width: 15rem;">
+                <img style="width: 100%;height:200px" src="/images/{{this.image}}"  class="card-img-top">
+                <div class="card-body">
+                  <div class="form-check">
+                    {{!-- <input class="form-check-input" type="checkbox"  value="" id="flexCheckDefault"> --}}
+{{!-- <a href="/select_event/{{this._id}}" class="form-check-input" type="button"  value="" id="flexCheckDefault"></a> --}}
+{{!-- {{#each name}} --}}
+  <label class="form-check-label" for="flexCheckDefault">{{this.eventname.eventname}}  </label>
+  {{!-- {{/each}} --}}
+</div>
+                  {{!-- <h5 class="card-title">{{this.description}}</h5> --}}
+                  <p class="card-text">{{this.description}}</p>
+                  <a href="/addcart_event/{{this._id}}" class="btn btn-primary">Request Pricing</a>
+                </div>
+              </div>
+            {{/each}}
+          </div>
+        </div>
+
+      </section>

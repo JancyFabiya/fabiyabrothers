@@ -1,0 +1,66 @@
+<section class=" h-custom gradient-custom-2">
+
+ <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12">
+             <div class="row g-0">
+              
+ <div class="card card-registration card-registration-2" style="border-radius: 18px;">
+          <div class="card-body p-0">
+              <div class="row g-0">
+              {{!-- <div class="col-lg-6"> --}}
+                <div class="p-5">
+                    <div class="row mb-4">
+                          <div class="col d-flex justify-content-center">
+
+   {{!-- <form action="/add_eventlist" method="get"> --}}
+                    {{!-- <div class="row mt-4"> --}}
+        <a href="/admin/add_fooddetails" class="btn btn-dark mr-auto">Add Food Details</a>
+                        {{!-- <button type="submit" class="btn btn-primary">Add Events</button> --}}
+      {{!-- </div> --}}
+      {{!-- </form> --}}
+</div></div></div>
+          
+              {{!-- <div class="col-lg-6"> --}}
+                <div class="p-5">
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Menu</th>
+      <th scope="col">Menu Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Price</th>
+      <th scope="col">Category</th>
+      <th scope="col">Food cuisine</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    {{#each food}}
+    <tr>
+      <td scope="row"><img src="/images/{{this.image}}" style="height:100px; width: 100px;"></td>
+      <td>{{this.foodname}}</td>
+      <td>{{this.description}}</td>
+      <td>{{this.amount}}</td>
+      <td>{{this.category}}</td>
+      <td>{{this.subcategory}}</td>
+
+      <td>
+      {{!-- <a href="/admin/edit-event/{{this._id}}" class="btn btn-secondary">Edit</a>
+      <a href="/admin/delete-user/{{this._id}}" onclick="return confirm('Do you want to delete {{this.eventname}} ?')" class="btn btn-secondary">Delete</a> --}}
+      <a href="/admin/edit-food/{{this._id}}"><i class="bx bx-edit-alt fs-5 text-primary px-2"></i></a>
+     <a href="/admin/delete-food/{{this._id}}" onclick="return confirm('Do you want to delete{{this.Name}} ?')"><i class="bx bx-trash text-danger px-2"></i></a>
+      </td>
+    </tr>
+    {{/each}}
+   
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>

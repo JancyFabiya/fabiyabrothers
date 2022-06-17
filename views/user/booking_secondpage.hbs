@@ -1,0 +1,121 @@
+{{!--
+<link rel='stylesheet' href='/stylesheets/booking.css' /> --}}
+{{!--
+<link rel='stylesheet' href='/stylesheets/scroll.css' /> --}}
+<link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
+
+{{!--
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> --}}
+{{!--
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"> --}}
+{{!--
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"> --}}
+{{!--
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"> --}}
+
+
+
+
+<div id="booking" class="section">
+    <a class="navbar-brand" href="#">
+        <h1>Happy Family</h1>
+        <h6>Professional Event Management and Catering services</h6>
+    </a>
+    <div class="section-center">
+        <div class="container">
+            <div class="row">
+                <div class="booking-form">
+                    <div class="form-header">
+                        <h1>Make your Booking</h1>
+                    </div>
+
+                    <form action="/booking-second" method="post">
+                        <div class="form-group">
+                            <a href="/food_view" class="btn btn-outline-danger ">Choose your food items</a>
+
+                        </div>
+                        
+                        <div class="form-group">
+
+                            <select multiple="" class="form-select" id="exampleSelect2" name="food">
+                                {{#each selectedFood}}
+
+                                {{#each this.fooditem}}
+
+                                <option>
+                                    {{this.foodname}}
+                                    {{!-- <a href="/admin/delete-food/{{this._id}}"
+                                        onclick="return confirm('Do you want to delete{{this.Name}} ?')"><i
+                                            class="bx bx-trash text-danger px-2"></i></a> --}}
+
+                                    <a href="/delete-selectedfood/{{this._id}}"
+                                        onclick="return confirm('Do you want to delete{{this.foodname}} ?')"> <i class="fa-solid fa-circle-trash"></i></a>
+
+                                </option>
+
+
+                                {{/each}}
+
+                                {{/each}}
+                            </select>
+
+
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group align">
+                                    <label class="form text-light " for="form2Example18">Total Payment</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input class="form-control" id="readOnlyInput" type="text" name="total"
+                                        value="{{Total}}" readonly="">
+
+                                    {{!-- <input class="form-control" type="text" name="total" value="{{Total}}"> --}}
+                                    <span class="form-label">Destination</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    {{!-- {{#if bookevent}} --}}
+                                    <a href="/view_eventdetails/{{bookevent._id}}" class="btn btn-outline-danger  ">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd"
+                                                d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+                                        </svg></a>
+                                    {{!-- {{/if}} --}}
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+
+
+                                    <button class="btn btn-outline-danger "> Payment</button>
+
+
+
+                                    {{!-- <a class="btn submit-btn"> <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                            height="16" fill="currentColor" class="bi bi-arrow-right"
+                                            viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd"
+                                                d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+                                        </svg></a> --}}
+
+
+                                </div>
+                            </div>
+                        </div>
+                        {{!-- <div class="form-btn"> <button class="submit-btn">Book Now</button> </div> --}}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,131 @@
+<link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
+
+{{!--
+<link rel='stylesheet' href='/stylesheets/booking.css' /> --}}
+{{!--
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> --}}
+{{!--
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"> --}}
+{{!--
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"> --}}
+{{!--
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"> --}}
+
+
+<div id="booking" class="section">
+
+    {{!-- <img src="images/logo-pink.jpg" alt="" style="width:500px; height:100px"> --}}
+
+    <div class="section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="card col-md-3 m-3 p-2 bg-secondary booking-form " style="width: 45rem;">
+
+                    <div class="booking-form">
+                        <div class="form-header">
+                            <h1>Make your Booking</h1>
+                        </div>
+                            <p style="color: red">{{logginError}}</p>
+                </div>
+                        {{!-- <div class="form-header">
+                            <h2>Personal Details</h2>
+                        </div> --}}
+                        <form action="/booking/{{bookevent._id}}" method="post" id="booking-form">
+                            <div class="form-group">
+                                <fieldset>
+                                    <input class="form-control" id="readOnlyInput" name='username' type="text"
+                                        value="{{userValue.name}}" readonly="">
+                                </fieldset>
+                            </div>
+                            <div class="form-group">
+                                <fieldset>
+                                    <input class="form-control" id="readOnlyInput" name='eventname' type="text"
+                                        value="{{bookevent.eventname}}" readonly="">
+                                </fieldset>
+                            </div>
+
+                            <div class="form-group">
+                                <fieldset>
+                                    <input class="form-control" id="readOnlyInput"name='eventtype' type="text"
+                                        value="{{bookevent.eventtype}}" readonly="">
+                                </fieldset>
+                            </div>
+
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="location" placeholder="Event Location"
+                                     required>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <span class="form-label text-primary">Event on</span>
+
+                                    <div class="form-group "> <input class="form-control " name="eventdate" type="date" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+
+                                    <div class="form-group">
+                                        <span class="form-label text-primary">No of guest</span>
+
+                                        <input class="form-control" name="guestcount" type="text"
+                                            placeholder="No of guest" required>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <span class="form-label text-primary">Start At</span>
+
+                                    <div class="form-group"> <input class="form-control" name="starttime" type="time" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+
+                                    <div class="form-group">
+                                        <span class="form-label text-primary">End At</span>
+
+                                        <input class="form-control" name="endtime" type="time" required>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        {{!-- {{#if bookevent}} --}}
+                                        <a href="/view_eventdetails/{{bookevent._id}}" class="btn btn-primary">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd"
+                                                    d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+                                            </svg></a>
+                                        {{!-- {{/if}} --}}
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group d-flex justify-content-end">
+                                        {{!-- <a href="/food_view" class="btn submit-btn">Choose your food items</a>
+                                        --}}
+                                        <button class="btn btn-primary" type="submit"> <svg
+                                                xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd"
+                                                    d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+                                            </svg></button>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            {{!-- <div class="form-btn"> <button class="submit-btn">Book Now</button> </div> --}}
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

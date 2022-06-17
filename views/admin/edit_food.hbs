@@ -1,0 +1,203 @@
+{{!-- {{!-- <h1>{{title}}</h1>
+<p>Welcome to {{title}}</p> --}}
+<section class="h-100 h-custom gradient-custom-2">
+
+ <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12">
+ <div class="card card-registration card-registration-2" style="border-radius: 18px;">
+          <div class="card-body p-0">
+
+             <div class="row g-0">
+              {{!-- <div class="col-lg-6"> --}}
+                <div class="p-5">
+ <h3 class="fw-normal justify-content-center align-items-center mb-5" style="color: #4835d4;">Edit Food Details</h3>
+<div class="container mt-5 ">
+<form action="/admin/edit-food/{{findfood._id}}" method="post"enctype="multipart/form-data">
+{{!-- <div class="btn-group" role="group" aria-label="Basic outlined example">
+  <button type="button" class="btn btn-outline-primary">Normal</button>
+  <button type="button" class="btn btn-outline-primary">Delux</button>
+  <button type="button" class="btn btn-outline-primary">Royal</button>
+</div> --}}
+{{!-- <div class="row">
+ <div class="form-check " role="group">
+        <input class="form-check-input" name="normal"type="checkbox" value="" id="form2Example31" checked />
+        <label class="form-check-label" for="form2Example31"> Normal </label>
+      </div>
+       <div class="form-check">
+        <input class="form-check-input" name="delux" type="checkbox" value="" id="form2Example31" checked />
+        <label class="form-check-label" for="form2Example31"> Delux </label>
+      </div>
+       <div class="form-check">
+        <input class="form-check-input"name="royal" type="checkbox" value="" id="form2Example31" checked />
+        <label class="form-check-label" for="form2Example31"> Royal </label>
+      </div>
+      </div> --}}
+
+      <!-- Example single danger button -->
+      <div class="row mb-4">
+    <div class="col d-flex justify-content-center">
+          {{!-- <div class="col d-flex"> --}}
+
+  <div class="form-outline mb-4 col-lg-3">
+{{!-- <div class=" mb-3"> --}}
+    <label class="form-label" for="form3Examplev2">Food Type</label>
+    </div>
+          <div class="form-outline mb-4 col-lg-3">
+             <select name="foodtype" class="form-control">
+              <option value="{{findfood.category}}">{{findfood.category}}</option>
+
+             {{#each cat}}
+               <option value="{{this.categoryname}}">{{this.categoryname}}</option>
+    {{/each}}
+
+
+           {{!-- <select name="foodtype" value="{{findfood.foodtype}}" class="form-control">
+               <option value="Veg">Veg</option>
+              <option value="Non Veg">Non Veg</option> --}}
+               {{!-- <option value="Royal">Royal</option> --}}
+
+           </select>
+        {{!-- </div> --}}
+</div>
+</div>
+</div>
+
+  <!-- Email input -->
+      {{!-- <div class="col-xs-4"> --}}
+<div class="row mb-4">
+    <div class="col d-flex justify-content-center">
+          {{!-- <div class="col d-flex"> --}}
+               <div class="form-outline mb-4 col-lg-3">
+    <label class="form-label" for="form3Examplev2">Meals</label>
+    </div>
+      <div class="form-outline mb-4 col-lg-3">
+<select name="foodcuisine" class="form-control">
+    <option value="{{findfood.subcategory}}">{{findfood.subcategory}}</option>
+    {{#each sub}}
+    <option value="{{this.subcategoryname}}">{{this.subcategoryname}}</option>
+    {{/each}}
+</select>
+     {{!-- <input type="text" name="foodcuisine" id="form2Example1" class="form-control" / > --}}
+    {{!-- <label class="form-label" for="form2Example1">Email address</label> --}}
+  </div>
+  </div></div>
+  <div class="row mb-4">
+    <div class="col d-flex justify-content-center">
+  <div class="form-outline mb-4 col-lg-3">
+    <label class="form-label" for="form3Examplev2">Food name</label>
+    </div>
+      <div class="form-outline mb-4 col-lg-3">
+
+     <input type="text" name="foodname" value="{{findfood.foodname}}" id="form2Example1" class="form-control" / >
+    {{!-- <label class="form-label" for="form2Example1">Email address</label> --}}
+  </div>
+  </div></div>
+
+  <!-- Password input -->
+  <div class="row mb-4">
+    <div class="col d-flex justify-content-center">
+  <div class="form-outline mb-4 col-lg-3">
+   <label class="form-label" for="form3Examplev2">Description</label>
+   </div>
+     <div class="form-outline mb-4 col-lg-3">
+ <input type="text" name="description"value="{{findfood.description}}" id="form2Example2" class="form-control" />
+    {{!-- <label class="form-label" for="form2Example2">Password</label> --}}
+  </div>
+    </div></div>
+
+  <div class="row mb-4">
+    <div class="col d-flex justify-content-center">
+  <div class="form-outline mb-4 col-lg-3">
+   <label class="form-label" for="form3Examplev2">Image</label>
+   </div>
+     <div class="form-outline mb-4 col-lg-3">
+   <input name="image"accept="image/*"value="{{findfood.image}}" type='file' id="imgInp" class="form-control"/>
+ </div>
+      <div class="form-outline mb-4 col-lg-3">
+
+  <img id="blah" src="/images/{{findfood.image}}" alt="your image" style="width: 100px;height:auto" />
+  </div>  {{!-- <div class="form-outline mb-4 col-lg-3">
+ <img src="" /> --}}
+    {{!-- <label class="form-label" for="form2Example2">Password</label> --}}
+  </div>
+    </div>
+
+  <div class="row mb-4">
+    <div class="col d-flex justify-content-center">
+  <div class="form-outline mb-4 col-lg-3">
+   <label class="form-label" for="form3Examplev2">Amount</label>
+   </div>
+     <div class="form-outline mb-4 col-lg-3">
+ <input type="text" name="amount" value="{{findfood.amount}}" id="form2Example2" class="form-control" />
+    {{!-- <label class="form-label" for="form2Example2">Password</label> --}}
+  </div>
+  </div></div>
+
+  <!-- 2 column grid layout for inline styling -->
+  {{!-- <div class="row mb-4">
+    <div class="col d-flex justify-content-center">
+      <!-- Checkbox -->
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
+        <label class="form-check-label" for="form2Example31"> Remember me </label>
+      </div>
+    </div>
+
+    <div class="col">
+      <!-- Simple link -->
+      <a href="#!">Forgot password?</a>
+    </div>
+  </div> --}}
+
+  <!-- Submit button -->
+  <div class="row mb-4">
+    <div class="col d-flex justify-content-center">
+          <div class="row col-lg-3 ">
+  <button type="submit" class="btn btn-primary btn-block mb-4 ">Add</button>
+
+  {{!-- <button type="button" class="btn btn-primary btn-block mb-4 ">Sign in</button> --}}
+</div>
+</div></div>
+  <!-- Register buttons -->
+  {{!-- <div class="text-center">
+    <p>Not a member? <a href="/signup">Register</a></p>
+    {{!-- <p>Are you admin?<a href="#!">Admin</a></p> --}}
+    <button type="button" class="btn btn-link btn-floating mx-1">
+      <i class="fab fa-facebook-f"></i>
+    </button>
+
+    <button type="button" class="btn btn-link btn-floating mx-1">
+      <i class="fab fa-google"></i>
+    </button>
+
+    <button type="button" class="btn btn-link btn-floating mx-1">
+      <i class="fab fa-twitter"></i>
+    </button>
+
+    <button type="button" class="btn btn-link btn-floating mx-1">
+      <i class="fab fa-github"></i>
+    </button> --}}
+  {{!-- </div> --}}
+</form> 
+</div>
+
+{{!-- </div> --}}
+</div></div>
+
+</div></div>
+
+</div></div></div>
+
+</section>
+<script>
+ // function viewImage(event){
+   // document.getElementById('viewImage').src=URL.createObjectURL(event.target.files[0])
+ // }
+ imgInp.onchange = evt => {
+  const [file] = imgInp.files
+  if (file) {
+    blah.src = URL.createObjectURL(file)
+  }
+}
+</script>

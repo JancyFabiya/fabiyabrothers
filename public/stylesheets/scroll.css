@@ -1,0 +1,6 @@
+.list-group{
+    max-height: 200px;
+    margin-bottom: 10px;
+    overflow:auto;
+    /* -webkit-overflow-scrolling: touch; */
+}

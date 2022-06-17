@@ -1,0 +1,87 @@
+@media (min-width: 1025px) {
+    .h-custom {
+    height: 100vh !important;
+    }
+    }
+/*   
+element.style {
+    height: 91vh;
+} */
+    .card-registration .select-input.form-control[readonly]:not([disabled]) {
+    font-size: 1rem;
+    line-height: 2.15;
+    padding-left: .75em;
+    padding-right: .75em;
+    }
+    .card-registration .select-arrow {
+    top: 13px;
+    }
+    .gradient-custom-2{
+        background-image:'public/images/1653110167535--event2.jpg'!important;
+    }
+    /* .gradient-custom-2 {
+    /* fallback for old browsers */
+    /* background: #a1c4fd; */
+    
+    /* Chrome 10-25, Safari 5.1-6 */
+    /* background: -webkit-linear-gradient(to right, rgba(161, 196, 253, 1), rgba(194, 233, 251, 1)); */
+    
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    /* background: linear-gradient(to right, rgba(161, 196, 253, 1), rgba(194, 233, 251, 1)) */
+    /* } */ 
+    
+    .bg-indigo {
+    background-color: #4835d4;
+    }
+    .bg-blue{
+        background-color: #63bff0;
+        }
+    @media (min-width: 992px) {
+    .card-registration-2 .bg-indigo {
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    }
+    }
+    @media (max-width: 991px) {
+    .card-registration-2 .bg-indigo {
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    }
+    }
+    .carousel-caption {
+        z-index: 1;
+        display:table;
+        width:100%;
+        height:100%;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .err{
+        color: red;
+      }
+      .design{
+        font-family: Irish Grover;
+        font-style: regular;
+        font-size : 80px;
+        line-height: 107.17px;
+        line-height: 100%;
+        align-content: Center;
+        vertical-align: Top;
+        /* width: 100%; */
+      }
+      .para{
+        font-family: Inconsolata;
+        font-style: Regular;
+        font-size: 30px;
+        line-height: 307.17px;
+        line-height: 150%;
+        text-align: Justified;
+        vertical-align: Top;   
+        padding-top: 10%;
+      }
+      .image{
+        height:20%;
+        width:30%
+      }

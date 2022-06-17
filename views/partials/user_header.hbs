@@ -1,0 +1,38 @@
+<div class="">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+
+    <a class="navbar-brand" href="#"><img src="/images/logo-pink.jpg" alt="" style="height: 100px;">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01"
+      aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+
+        </li>
+        <li class="nav-item">
+
+        </li>
+      </ul>
+      <div class="d-flex justify-content-end">
+        {{#if userValue}}
+
+        <form action="/logout" method="get" class="d-flex">
+          <button class="btn btn-light my-2 my-sm-0" type="submit">Logout</button>
+        </form>
+        {{else}}
+        <form action="/login" method="get" class="d-flex">
+          <button class="btn btn-light my-2 my-sm-0" type="submit">Login</button>
+        </form>
+        {{/if}}
+      </div>
+
+
+    </div>
+
+  </nav>

@@ -1,0 +1,48 @@
+    {{!-- ajax cdn --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.js"
+    integrity="sha512-4WpSQe8XU6Djt8IPJMGD9Xx9KuYsVCEeitZfMhPi8xdYlVA5hzRitm0Nt1g2AZFS136s29Nq4E4NVvouVAVrBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="javascripts/ajaxscript.js"></script>
+  
+  <div class="col py-3">
+      <h4>Select your food</h4>
+
+
+{{!-- <section> --}}
+    <div class="container my-5">
+        <div class="row">
+            {{#each fooddisp}}
+            <div class="card col-md-3 m-2" style="width: 15rem;">
+                <img style="width: 100%;height:200px" src="/images/{{this.image}}" class="card-img-top">
+                <div class="card-body">
+                    <div class="form-check">
+                        {{!-- <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"> --}}
+                        {{!-- <a href="/select_event/{{this._id}}" class="form-check-input" type="button" value=""
+                            id="flexCheckDefault"></a> --}}
+                        {{!-- {{#each name}} --}}
+                        <label class="form-check-label" for="flexCheckDefault">{{this.foodname}} </label>
+                    </div>
+                    <div class="form-check">
+
+                        <label class="form-check-label" for="flexCheckDefault">{{this.category.categoryname}} </label>
+
+                        {{!-- {{/each}} --}}
+                    </div>
+                    {{!-- <h5 class="card-title">{{this.description}}</h5> --}}
+                    <p class="card-text">{{this.description}}</p>
+                    <p class="card-text"><small class="text-muted">Rs.{{this.amount}}</small></p>
+                    {{!-- <a href="/add-selectedfood/{{this._id}}" class="btn btn-primary">add</a> --}}
+                    {{!-- <a href="/addcart_event/{{this._id}}" class="btn btn-primary">Food details</a> --}}
+                    <button onclick="addToFood('{{this._id}}')" class="btn"> <input class="form-check-input"
+                            type="checkbox" value="" id="flexCheckDefault"></button>
+
+                </div>
+            </div>
+            {{/each}}
+            <a href="/booking_secondpage/{{bookevent}}" class="btn btn-primary">Proceed to booking</a>
+
+        </div>
+    </div>
+
+{{!-- </section> --}}
+</div>

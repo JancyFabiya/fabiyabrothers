@@ -1,0 +1,45 @@
+<div class="card mb-2 container mt-2" style="max-width: 540px;">
+  <div class="row g-0 d-flex align-items-center">
+
+    <div class="col-md-6 card-body">
+      {{!-- {{#if evntimg}} --}}
+
+      <img style="width: 100%;height:200px" src="/images/{{evntimg}}" class="card-img-top">
+      {{!-- {{/if}} --}}
+
+    </div>
+    {{#if bookdet}}
+    <div class="col-md-6 ">
+      <div class="card-body">
+        <div> <label class="form-check-label" for="flexCheckDefault">Event :{{bookdet.eventname}} </label></div>
+        <div><label class="form-check-label" for="flexCheckDefault">Event Type:{{bookdet.eventtype}} </label></div>
+        <div> <label class="form-check-label" for="flexCheckDefault">Event Location :{{bookdet.eventlocation}} </label>
+        </div>
+        <div><label class="form-check-label" for="flexCheckDefault">Event On:{{bookdet.eventdate}} </label>
+        </div>
+        <div><label class="form-check-label" for="flexCheckDefault">No.of.guest:{{bookdet.noofguest}} </label>
+        </div>
+        <div><label class="form-check-label" for="flexCheckDefault">start Time:{{bookdet.starttime}} </label>
+        </div>
+        <div> <label class="form-check-label" for="flexCheckDefault">End Time:{{bookdet.endtime}} </label>
+        </div>
+        <div><label class="form-check-label" for="flexCheckDefault">Status:{{bookdet.status}} </label>
+        </div>
+
+
+
+
+        {{!-- <h5 class="card-title">{{eventview.eventname.eventname}} </h5> --}}
+        {{!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+          content. This content is a little bit longer.</p> --}}
+        {{!-- <p class="card-text"><small class="text-muted">Rs.{{eventview.amount}}</small></p> --}}
+        <div class="d-flex justify-content-center">
+          <a href="/logged" class="btn btn-primary mt-2">Exit</a>
+        </div>
+
+
+      </div>
+    </div>
+    {{/if}}
+  </div>
+</div>

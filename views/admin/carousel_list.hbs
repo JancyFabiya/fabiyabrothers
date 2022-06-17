@@ -1,0 +1,57 @@
+<section class=" h-custom gradient-custom-2">
+
+ <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12">
+             <div class="row g-0">
+              
+ <div class="card card-registration card-registration-2" style="border-radius: 18px;">
+          <div class="card-body p-0">
+              <div class="row g-0">
+              {{!-- <div class="col-lg-6"> --}}
+                <div class="p-5">
+                    <div class="row mb-4">
+                          <div class="col d-flex justify-content-center">
+
+   {{!-- <form action="/add_eventlist" method="get"> --}}
+                    {{!-- <div class="row mt-4"> --}}
+        <a href="/admin" class="btn btn-dark mr-auto">Add carousel</a>
+                        {{!-- <button type="submit" class="btn btn-primary">Add Events</button> --}}
+      {{!-- </div> --}}
+      {{!-- </form> --}}
+</div></div></div>
+          
+              {{!-- <div class="col-lg-6"> --}}
+                <div class="p-5">
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Sl No</th>
+      <th scope="col">Images</th>
+     
+    </tr>
+  </thead>
+  <tbody>
+    {{#each carousalimage}}
+    <tr>
+              <td>{{@index}}</td>
+
+      <td scope="row"><img src="/images/{{this.image}}" style="height:100px; width: 100px;"></td>
+     
+      <td>
+     
+     <a href="/admin/delete-carousel/{{this._id}}" onclick="return confirm('Do you want to delete{{this.Name}} ?')"><i class="bx bx-trash text-danger px-2"></i></a>
+      </td>
+    </tr>
+    {{/each}}
+   
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>

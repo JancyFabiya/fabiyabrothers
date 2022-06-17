@@ -1,0 +1,29 @@
+{
+  "name": "eventmanagement",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon ./bin/www"
+  },
+  "dependencies": {
+    "@handlebars/allow-prototype-access": "^1.0.5",
+    "bcrypt": "^5.0.1",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "dotenv": "^16.0.1",
+    "express": "~4.16.1",
+    "express-handlebars": "^6.0.5",
+    "express-session": "^1.17.3",
+    "hbs": "^4.2.0",
+    "http-errors": "~1.6.3",
+    "install": "^0.13.0",
+    "joi": "^17.6.0",
+    "mdb-ui-kit": "^4.0.0",
+    "mongoose": "^6.3.3",
+    "morgan": "~1.9.1",
+    "multer": "^1.4.4",
+    "nodemailer": "^6.7.5",
+    "nodemon": "^2.0.16",
+    "razorpay": "^2.8.1"
+  }
+}

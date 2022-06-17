@@ -1,0 +1,83 @@
+
+<nav class="navbar navbar-expand-lg navbar-light bg-blue">
+  <div class="container-fluid">
+      {{!-- <a class="navbar-brand" href="#">
+      <img src="public/images/logo.jpg" alt="" width="30" height="24">
+    </a> --}}
+    {{!-- <form action="/admin"> --}}
+        <a class="navbar-brand" href="#"><img src="images/logoblue.jpg" alt=""style="width:auto; height:50px"></a>
+
+    {{!-- <a class="navbar-brand" href="#">Event Management & Catering</a> --}}
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+            {{#if admin}}
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a  class="nav-link active" href="/admin/Booking" >Booking</a>
+        </li>
+        <li class="nav-item dropdown">
+          {{!-- <div class=" mb-3"> --}}
+            {{!-- <label for="exampleInputPassword1" class="form-label">Event</label> --}}
+           {{!-- <select name="Event" class="form-control">
+               <option value="normal">Event</option>
+              <option value="normal">Normal</option>
+               <option value="normal">Delux</option>
+                <option value="normal">Royal</option>
+
+
+           </select> --}}
+        {{!-- </div> --}}
+          {{!-- <a class="nav-link dropdown-toggle active" aria-current="page" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Events</a> --}}
+                 <a class="nav-link dropdown-toggle" aria-current="page" href="/admin" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Events</a>
+
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="/admin/Event_Type">Event Type</a></li>
+                        <li><a class="dropdown-item" href="/admin/add_eventname">Event Name</a></li>
+
+            <li><a class="dropdown-item" href="/admin">Add Events</a></li>
+            <li><a class="dropdown-item" href="/admin/event_list">Event List</a></li>
+
+            {{!-- <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>--}}
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Items</a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="/admin//food_category">Food Category</a></li>
+            <li><a class="dropdown-item" href="/admin/food_subcategory">Food Sub Category</a></li>
+            <li><a class="dropdown-item" href="/admin/add_fooddetails">Add Food Details</a></li>
+            <li><a class="dropdown-item" href="/admin/food_list">Food List</a></li>
+
+            {{!-- <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li> --}}
+          </ul>
+        </li>
+        {{!-- <li class="nav-item ">
+          <a class="nav-link " href="#" >Booking</a>--}}
+          {{!-- <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul> 
+        </li>
+        <li class="nav-item">
+          <a class="nav-link ">Report</a>
+        </li> --}}
+      </ul>
+      {{!-- <form action="/logout" method="post" class="d-flex"> --}}
+        {{!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> --}}
+        {{!-- <button class="btn btn-outline-success" href="/admin/login" type="submit">Logout</button> --}}
+                    <button class="btn btn-outline-success" ><a href="/admin/logout" style="text-decoration: none;color: rgb(63, 62, 62);">Logout</a></button>
+
+      {{!-- </form> --}}
+      {{/if}}
+    </div>
+    {{!-- </form> --}}
+  </div>
+</nav>

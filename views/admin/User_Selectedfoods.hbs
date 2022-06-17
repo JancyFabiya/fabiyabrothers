@@ -1,0 +1,50 @@
+ 
+
+
+
+                                    <section class=" h-custom gradient-custom-2">
+
+ <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12">
+             <div class="row g-0">
+              
+ <div class="card card-registration card-registration-2" style="border-radius: 18px;">
+          <div class="card-body p-0">
+              <div class="row g-0">
+              {{!-- <div class="col-lg-6"> --}}
+                <div class="p-5">
+                    <div class="row mb-4">
+                          <div class="col d-flex justify-content-center">
+
+   {{!-- <form action="/add_eventlist" method="get"> --}}
+                    {{!-- <div class="row mt-4"> --}}
+        {{!-- <a href="/admin/add_fooddetails" class="btn btn-dark mr-auto">Add Food Details</a> --}}
+                        {{!-- <button type="submit" class="btn btn-primary">Add Events</button> --}}
+      {{!-- </div> --}}
+      {{!-- </form> --}}
+</div></div></div>
+          
+              {{!-- <div class="col-lg-6"> --}}
+                <div class="p-5">
+<ul class="list-group "name="food">
+                                {{#each efood}}
+
+                                {{#each this.foodname}}
+
+                                <li
+                                    class="list-group-item d-flex justify-content-between align-items-center text-dark form-control" >
+                                    {{this.foodname.foodname}}
+
+    </li>
+    {{/each}}
+    {{/each}}
+    </ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>

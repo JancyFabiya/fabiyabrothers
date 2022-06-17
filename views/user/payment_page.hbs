@@ -1,0 +1,139 @@
+
+<section class="h-100 h-custom gradient-custom-2">
+
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-6" style="height:200px">
+                <div class="card card-registration card-registration-2" style="border-radius: 18px;">
+                    <div class="card-body p-0" >
+
+                        <div class="row g-0" >
+                            {{!-- <div class="col-lg-6"> --}}
+                                <div class="">
+
+                                    <div class="container mt-1 ">
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center">
+                                                    <h2 class="fw-normal mb-2 pb-2 pt-2" style="letter-spacing: 1px;">Total
+                                                        amount:Rs.{{Total}}.00/-</h2>
+                                                        </div>
+                                                        <div class="d-flex justify-content-center pb-3">
+                                                    <form id="payment" method="post" role="form">
+
+                                                        <input type="text" value="{{bookid}}" name="id" hidden>
+
+                                                        
+
+                                                        <button type="submit" class="btn btn-primary">Checkout</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+    $("#payment").submit((e) => {
+        e.preventDefault()
+        console.log("in ajax")
+        $.ajax({
+
+            url: '/payment',
+            method: 'post',
+            data: $('#payment').serialize(),
+            success: (response) => {
+
+                console.log('responseeeeee', response)
+
+                if (response) {
+                    // alert("Sucessfully Completed")
+                    razorpayPay(response)
+                } else {
+                    console.log("error occured")
+                }
+
+            }
+        })
+
+    })
+
+
+
+    function razorpayPay(order) {
+        console.log(order, 'order')
+        var options = {
+            "key": 'rzp_test_QNfRnyTDRNLcvf', // Enter the Key ID generated from the Dashboard
+            "amount": order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            "currency": "INR",
+            "name": "Happy Family",
+            "description": "Professional Event Management and Catering Services",
+            "image": "/images/family_logo-removebg-preview.png",
+            "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+            "handler": function (response) {
+                // alert(response.razorpay_payment_id);
+               //  alert(response.razorpay_order_id);
+//alert(response.razorpay_signature);
+
+
+                verifyPayment(response, order)
+
+
+            },
+            "prefill": {
+                "name": "Alexa Cars",
+                "email": "alexacars24@gmail.com",
+                "contact": "1234567890"
+            },
+            "notes": {
+                "address": "Razorpay Corporate Office"
+            },
+            "theme": {
+                "color": "#FC6414"
+            }
+        };
+
+        var rzp1 = new Razorpay(options);
+        rzp1.open();
+
+
+    }
+
+
+    function verifyPayment(payment, order) {
+
+        $.ajax({
+            url: '/verify-payment',
+            data: {
+                payment,
+                order
+            },
+            method: 'post',
+            success: (response) => {
+
+                if (response.status) {
+
+                    location.href = '/user/order-success'
+                } else {
+                    alert("payment failed")
+                }
+            }
+        })
+    }
+
+</script>

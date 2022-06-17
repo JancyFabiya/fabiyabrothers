@@ -1,0 +1,144 @@
+{{!-- {{!-- <h1>{{title}}</h1>
+<p>Welcome to {{title}}</p> --}}
+<section class="h-100 h-custom gradient-custom-2">
+
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-8">
+        <div class="card card-registration card-registration-2" style="border-radius: 18px;">
+          <div class="card-body p-0">
+
+            <div class="row g-0">
+              <div class="p-2">
+                <div class="row mb-1">
+                  <div class="col d-flex justify-content-center">
+                    <div class="row col-lg-4 ">
+                      <h3 class="fw-normal justify-content-center align-items-center mb-1" style="color: #f9f9fc;">Add
+                        Food Details</h3>
+                    </div>
+                  </div>
+                </div>
+                <div class="container mt-2 ">
+                  <form action="/admin/add_fooddetails" method="post" enctype="multipart/form-data">
+
+
+                    <!-- Example single danger button -->
+                    <div class="row mb-2">
+                      <div class="col d-flex justify-content-center">
+                        {{!-- <div class="col d-flex"> --}}
+
+                          <div class="form-outline mb-2 col-lg-2">
+                            {{!-- <div class=" mb-3"> --}}
+                              <label class="form-label pt-2" for="form3Examplev2">Food Type :</label>
+                            </div>
+                            <div class="form-outline mb-2 col-lg-4">
+
+                              <select name="foodtype" class="form-control">
+                                {{#each catgy}}
+                                <option value="{{this.categoryname}}">{{this.categoryname}}</option>
+                                {{/each}}
+
+
+
+                              </select>
+                              {{!--
+                            </div> --}}
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Email input -->
+                      {{!-- <div class="col-xs-4"> --}}
+                        <div class="row mb-2">
+                          <div class="col d-flex justify-content-center">
+                            {{!-- <div class="col d-flex"> --}}
+                              <div class="form-outline mb-2 col-lg-2">
+                                <label class="form-label pt-2" for="form3Examplev2">Meals :</label>
+                              </div>
+                              <div class="form-outline mb-2 col-lg-4">
+                                <select name="foodcuisine" class="form-control">
+                                  {{#each subcat}}
+                                  <option value="{{this.subcategoryname}}">{{this.subcategoryname}}</option>
+                                  {{/each}}
+                                </select>
+                                {{!-- <input type="text" name="foodcuisine" id="form2Example1" class="form-control" />
+                                --}}
+                                {{!-- <label class="form-label" for="form2Example1">Email address</label> --}}
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row mb-2">
+                            <div class="col d-flex justify-content-center">
+                              <div class="form-outline mb-2 col-lg-2">
+                                <label class="form-label" for="form3Examplev2">Food name</label>
+                              </div>
+                              <div class="form-outline mb-2 col-lg-4">
+
+                                <input type="text" name="foodname" id="form2Example1" class="form-control" />
+                                {{!-- <label class="form-label" for="form2Example1">Email address</label> --}}
+                              </div>
+                            </div>
+                          </div>
+
+                          <!-- Password input -->
+                          <div class="row mb-2">
+                            <div class="col d-flex justify-content-center">
+                              <div class="form-outline mb-2 col-lg-2">
+                                <label class="form-label" for="form3Examplev2">Description</label>
+                              </div>
+                              <div class="form-outline mb-2 col-lg-4">
+                                <input type="text" name="description" id="form2Example2" class="form-control" />
+                                {{!-- <label class="form-label" for="form2Example2">Password</label> --}}
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row mb-2">
+                            <div class="col d-flex justify-content-center">
+                              <div class="form-outline mb-2 col-lg-6">
+                                <label class="form-label" for="form3Examplev2">Image</label>
+                                <input type="file" name="image" id="formFile" class="form-control" />
+
+                              </div>
+
+                            </div>
+                          </div>
+
+                          <div class="row mb-2">
+                            <div class="col d-flex justify-content-center">
+                              <div class="form-outline mb-2 col-lg-2">
+                                <label class="form-label" for="form3Examplev2">Amount</label>
+                              </div>
+                              <div class="form-outline mb-2 col-lg-4">
+                                <input type="text" name="amount" id="form2Example2" class="form-control" />
+                                {{!-- <label class="form-label" for="form2Example2">Password</label> --}}
+                              </div>
+                            </div>
+                          </div>
+
+
+
+                          <!-- Submit button -->
+                          <div class="row mb-2">
+                            <div class="col d-flex justify-content-center">
+                              <div class="row col-lg-3 ">
+                                <button type="submit" class="btn btn-primary btn-block mb-2 ">Add</button>
+
+                              </div>
+                            </div>
+                          </div>
+
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+  </div>
+
+</section>
