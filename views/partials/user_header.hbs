@@ -13,14 +13,34 @@
 
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
+          
+        </li>
+      </ul>
+                {{#if userValue}}
+      <ul class="navbar-nav me-auto">
 
+        <li class="nav-item">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+            aria-expanded="false">Events</a>
+          <ul class="dropdown-menu">
+            {{#each EventName}}
+            <li><a class="dropdown-item" href="/selected_event/{{this._id}}">{{this.eventname}}</a></li>
+{{/each}}
+
+          </ul>
+                  <li class="nav-item">
+
+                    <a class="nav-link active" href="/All-orderlist">Order List</a>
+                    </li>
+
+        </li>
         </li>
         <li class="nav-item">
 
         </li>
       </ul>
       <div class="d-flex justify-content-end">
-        {{#if userValue}}
 
         <form action="/logout" method="get" class="d-flex">
           <button class="btn btn-light my-2 my-sm-0" type="submit">Logout</button>

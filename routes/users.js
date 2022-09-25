@@ -9,21 +9,30 @@ const res = require('express/lib/response');
 const Razorpay = require('razorpay');
 const { render } = require('express/lib/response');
 
+
+
 let userValue
 let admin
 /* GET home page. */
 router.get('/', async function (req, res, next) {
  
   const eventresult = await userHelpers.getAllEventDetails()
-  const name = await adminHelpers.getEventName()
+  // const name = await adminHelpers.getEventName()
+  // console.log(name)
+  
+  // const evntname=Object.values(name)
+  // const evntname2=Object.values(name)[1]
+  // console.log("++++",evntname)
+
 
   if (req.session.user) {
     res.redirect('/logged');
   } else if (req.session.admin) {
     res.redirect("/logged")
   } else {
-    res.render('home', {eventresult, name })
+    res.render('home', {eventresult })
     // req.session.loginErr=false
+
     // res.render('user/booking_page',{layout:false})
   }
 
@@ -52,19 +61,12 @@ router.get('/otp', (req, res) => {
   res.render('otp_signup', { layout: false })
 })
 router.post('/signup', (req, res) => {
-  // const {e}=validate(req.body)
-  // if(e){
-  //     return res.status(400).send(e.details[0].message);
-  // }
-  //  let user =await User.findOne({email:req.body.email})
-  //  if(user){
-  //      return res.status(400).send('That user already exisits!')
-  //  }
-  //  else{
+ 
   userHelpers.doSignup(req.body).then((response) => {
     // console.log(response);
     req.session.otp = response.otp
     req.session.userdetails = response
+    
     res.redirect('/otp')
   })
   .catch((err)=>{
@@ -130,8 +132,11 @@ router.get('/logged', async function (req, res, next) {
   if (req.session.user) {
     userValue = req.session.user
     const eventresult = await userHelpers.getAllEventDetails()
+    const EventName=await adminHelpers.getEventName()
+    req.session.EventName=EventName
+    console.log(eventresult,'111111111');
     // req.session.eventresult=eventresult
-    res.render('user/user_booking', { userValue, eventresult })
+    res.render('user/user_booking', { userValue, eventresult,EventName})
   }
   else if (req.session.admin) {
     //admin= req.session.admin
@@ -240,14 +245,6 @@ router.post("/set_conformpassword", (req, res) => {
   }
 });
 
-/* View event detailed list */
-router.get('/view_eventdetails/:id', async (req, res) => {
-  userValue = req.session.user
-  const eventview = await userHelpers.getSelectedEventDetails(req.params.id)
-  // console.log('detail value',eventview);
-
-  res.render('user/event_detailview', { userValue, eventview })
-})
 
 /* verify login */
 
@@ -258,6 +255,26 @@ const verifyLogin = (req, res, next) => {
     res.redirect('/login')
   }
 }
+/* View event detailed list */
+router.get('/view_eventdetails/:id',verifyLogin, async (req, res) => {
+  userValue = req.session.user
+  const eventview = await userHelpers.getSelectedEventDetails(req.params.id)
+  // console.log('detail value',eventview);
+  EventName=req.session.EventName
+
+  res.render('user/event_detailview', { userValue, eventview,EventName })
+})
+
+/* All Order List */
+router.get('/All-orderlist',async(req,res)=>{
+  userValue = req.session.user
+const orderlist=await userHelpers.getOrderList(userValue.name)
+console.log('order list',orderlist)
+EventName=req.session.EventName
+
+res.render('user/all_orderlist',{userValue,orderlist,EventName})
+})
+
 
 /* un user click event(for login) */
 
@@ -295,8 +312,9 @@ router.get('/booking/:id', verifyLogin, async (req, res, next) => {
   req.session.eventamount = bookevent.amount
   console.log('selected event amount aaaa=', bookevent.amount);
   console.log('start', bookevent, 'event detail');
+  EventName=req.session.EventName
 
-  res.render('user/booking_page', {userValue, bookevent })
+  res.render('user/booking_page', {userValue, bookevent,EventName })
 
 })
 
@@ -305,12 +323,13 @@ router.post('/booking/:id', verifyLogin, async (req, res, next) => {
 
   console.log("qwertyuio",req.params);
 
-  await userHelpers.addBooking(req.body).then((response) => {
+  await userHelpers.addBooking(req.body,req.session.user._id).then((response) => {
+    console.log('222',response);
     req.session.guestcount = response.noofguest
     console.log('guest000000',);
     console.log('booking add', response.noofguest);
     console.log('saadfg1111111111', req.session.EventId);
-    res.redirect('/booking_secondpage/:req.session.EventId')
+    res.redirect(`/booking_secondpage/${req.session.EventId}`)
     // res.redirect("/qwertyu")
 
   })
@@ -320,21 +339,43 @@ router.post('/booking/:id', verifyLogin, async (req, res, next) => {
   // });
 })
 
+/* Selected Events display */
+
+router.get('/selected_event/:id',verifyLogin,async(req,res)=>{
+  console.log('event id 111',req.params.id);
+  userValue = req.session.user
+  console.log('66666666',userValue);
+let ENamE=await userHelpers.selectedEventname(req.params.id)
+console.log('0000',ENamE.eventname);
+let Evalue =await userHelpers.selectedEvent(ENamE.eventname)
+console.log('3333',Evalue);
+EventName=req.session.EventName
+
+  res.render('user/selected_event',{userValue,Evalue,EventName})
+
+})
+
 /* second booking page and add to booking  */
 
-router.get('/booking_secondpage/:id', verifyLogin, async (req, res, next) => {
+router.get('/booking_secondpage/:id', verifyLogin, async (req, res) => {
 
   // let booking=await userHelpers.addBooking(req.body).then(async(response)=>{
   req.session.event = req.params.id
   bookevent=req.session.EventId
   userValue = req.session.user
+  console.log('Not workinggggg');
   let selectedFood = await userHelpers.findFood(req.session.user._id)
   // console.log('selected food====', selectedFood);
+  console.log('Not workinggggg123');
   let Total = await userHelpers.findTotal(req.params.id, req.session.user._id, req.session.eventamount, req.session.guestcount)
+  console.log('Not workinggggg567');
   req.session.Total = Total
   // let total=userHelpers.findTotal()
   // console.log('booking add',booking);
-  res.render('user/booking_secondpage copy', {userValue,selectedFood,Total,bookevent})
+  EventName=req.session.EventName
+
+  
+  res.render('user/booking_secondpage_copy', {userValue,selectedFood,Total,bookevent,EventName})
   console.log('logged user 99999', req.session.user.name);
   //})
 
@@ -439,7 +480,9 @@ router.get('/food_view', verifyLogin, async (req, res, next) => {
   userValue = req.session.user
   bookevent = req.session.event
   const fooddisp = await adminHelpers.getFoodDetails()
-  res.render('user/food_view', { userValue, fooddisp, bookevent })
+  EventName=req.session.EventName
+
+  res.render('user/food_view', { userValue, fooddisp, bookevent,EventName })
 })
 
 
@@ -464,7 +507,7 @@ router.get('/add-selectedfood/:id', verifyLogin, async (req, res) => {
 /*   delete selected food */
 
 router.get('/delete-selectedfood/:id', verifyLogin, (req, res) => {
-  userHelpers.deleteSelectedFood(req.params.id, req.session.user).then((response) => {
+  userHelpers.deleteSelectedFood(req.params.id, req.session.user._id).then((response) => {
     //  id=req.session.event
     res.redirect('/booking_secondpage/:req.session.event')
 

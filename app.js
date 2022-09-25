@@ -11,6 +11,9 @@ var adminRouter = require('./routes/admin');
 const multer  = require('multer')
 // const upload = multer({ dest: 'uploads/' })
 
+const nocache = require("nocache");
+
+
 var hbs=require('express-handlebars')
 var app = express();
 
@@ -58,6 +61,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 // app.use('/', indexRouter);
 app.use('/', usersRouter);
 app.use('/admin', adminRouter);
+
+app.use(nocache());
+
 
 // SET STORAGE
 

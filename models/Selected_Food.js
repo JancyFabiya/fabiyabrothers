@@ -15,6 +15,9 @@ const selectedFoodSchema = new Schema({
         },
         amount: {
             type: Number
+        },
+        image:{
+            type:String
         }
 
 

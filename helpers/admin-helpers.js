@@ -101,8 +101,22 @@ module.exports = {
 
     },
     getEventName: () => {
-        return new Promise((resolve, reject) => {
-            Event_name.find().lean().then((response) => {
+        return new Promise(async (resolve, reject) => {
+            // let ename=await Event_name.aggregate([
+            //     {
+            //         $project:{
+            //             eventname:'$eventname',
+            //         }
+            //     },
+            //     {
+            //        $project:{
+            //         eventname:'$eventname',
+            //        }        
+            //     }
+            // ]).then((response)=>{
+            //     resolve(response)
+            // })
+            await Event_name.find().lean().then((response) => {
                 resolve(response)
                 console.log(response + "=======");
             })
@@ -309,6 +323,31 @@ module.exports = {
             resolve(bookId)
 
 
+        })
+    },
+    findBookingFood: (bkId) => {
+        return new Promise(async (resolve, reject) => {
+            let Bkid = mongoose.Types.ObjectId(bkId)
+            const selectedfood = await booking.aggregate([
+                {
+                    $match: { _id: Bkid }
+                },
+                {
+                    $unwind: '$selectedFood'
+                },
+                {
+                    $project: {
+                        foodname: '$selectedFood.foodname'
+                    }
+                },
+                // {
+                //     $project: {
+                //         image: '$selectedFood.image'
+                //     }
+                // }
+            ])
+            resolve(selectedfood)
+            console.log(selectedfood, 77777777777);
         })
     },
     findCustomerSelectedFood: (user) => {

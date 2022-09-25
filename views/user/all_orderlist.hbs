@@ -29,20 +29,15 @@
                             <th scope="col">Booking Status</th>
                             <th scope="col">Selected Foods</th>
 
-
-
+{{!-- <td>{{orderlist}}</td> --}}
                           </tr>
                         </thead>
                         <tbody>
-                          {{#each allbooking}}
+                          {{#each orderlist}}
                           <tr>
                             {{!-- <td scope="row"><img src="/images/{{this.image}}" style="height:100px; width: 100px;">
                             </td> --}}
-                            <td>
-                              <a href="/admin/delete-booking/{{this._id}}"
-                                onclick="return confirm('Do you want to delete{{this.Name}} ?')"><i
-                                  class="bx bx-trash text-danger px-2"></i></a>
-                            </td>
+                           
                             <td>{{this.customername}}</td>
                             <td>{{this.eventname}}</td>
                             <td>{{this.eventtype}}</td>
@@ -52,8 +47,7 @@
                             <td>{{this.starttime}}</td>
                             <td>{{this.endtime}}</td>
                             <td>{{this.totalAmount}}</td>
-                            <td>{{this.status}}</td>
-                            <td><a class="text-muted" href="/admin/view_selectedfood/{{this._id}}">Selected Foods</a></td>
+                            <td>{{this.status}}<br></td>
                             {{!-- {{/each}} --}}
                             {{#each this.selectedFood}}
 

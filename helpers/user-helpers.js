@@ -20,6 +20,11 @@ const { resolve } = require('node:path')
 
 
 
+
+
+
+
+
 const instance = new Razorpay({
     key_id: process.env.RAZORPAY_ID,
     key_secret: process.env.RAZORPAY_KEY,
@@ -135,13 +140,14 @@ module.exports = {
                             to: userData.email,
                             subject: "just testing nodemailer",
                             text: "just random texts ",
-                            html: '<p>hi your otp ' + otpGenerator + ''
+                            html: '<h2>hi your otp ' + otpGenerator + ''
                         }
                         mailTransporter.sendMail(mailDetails, (err, Info) => {
                             if (err) {
                                 console.log(err);
                             } else {
                                 console.log("email has been sent ", Info.response);
+
                             }
                         })
                     } catch (error) {
@@ -398,7 +404,7 @@ module.exports = {
 
                 Selected_Food.updateOne({ user: userId }, {
                     // $push:{food:foodId}
-                    $push: { fooditem: [{ foodname: name.foodname, amount: name.amount }] }
+                    $push: { fooditem: [{ foodname: name.foodname, amount: name.amount, image: name.image }] }
                     // ,{food:foodId}]}
 
 
@@ -414,7 +420,8 @@ module.exports = {
                     user: userId,
                     fooditem: [{
                         foodname: name.foodname,
-                        amount: name.amount
+                        amount: name.amount,
+                        image: name.image
                     }]
                     // ,{food:foodId}] 
                     //    food:[foodId]
@@ -456,19 +463,49 @@ module.exports = {
     },
     deleteSelectedFood: (fId, userId) => {
         return new Promise(async (resolve, reject) => {
+            // let ID=mongoose.Types.ObjectId(userId)
+            console.log(userId, 'userrr');
+
             const deleteselfood = await Selected_Food.updateOne({ 'fooditem._id': fId }, {
                 $pull: { fooditem: { _id: fId } }
             }).then((deleteselfood) => {
-                //    console.log('deletefood==========',deleteselfood);
-
+                console.log('deletefood==========', deleteselfood);
+                //    const findfood=await Selected_Food.aggregate([
+                //     {
+                //         $unwind:"$fooditem"
+                //     },
+                //     {
+                //         $match:{user: ID}
+                //     },
+                // ])
+                // console.log('findfood',findfood[0]);
+                // if(findfood!=undefined){
                 resolve(deleteselfood)
+                // }else{
+                //     const deletefooood=Selected_Food.deleteOne({user:userId})
+                //     resolve(deletefooood)
+                // }
             })
             // console.log(result);
 
         })
     },
-    addBooking: (bookData) => {
+    addBooking: (bookData, userId) => {
         return new Promise(async (resolve, reject) => {
+            // let ID=mongoose.Types.ObjectId(userId)
+            // const findfood=await Selected_Food.aggregate([
+            //     {
+            //         $unwind:"$fooditem"
+            //     },
+            //     {
+            //         $match:{user: ID}
+            //     },
+            // ])
+            // console.log('findfood',findfood[0]);
+            // if(findfood[0]==undefined){
+            //     const deletefooood=Selected_Food.deleteOne({user:userId})
+            //     console.log(deletefooood),'dellllll';
+            // }
             console.log(bookData, '111111111');
             console.log(bookData.username, 'username body');
             let bookdet = await booking.findOne({ customername: bookData.username })
@@ -479,24 +516,42 @@ module.exports = {
             console.log('event type 1', bookData.eventtype);
 
             if (bookdet) {
+                console.log('database user');
                 if (bookdet.customername == bookData.username) {
-                    // if( (bookdet.eventname==bookData.eventname) && (bookdet.eventtype==bookData.eventtype)){
-
-                    await booking.updateOne({ eventname: bookData.eventname, eventtype: bookData.eventtype }, {
-                        $set: {
+                    console.log('users are equal');
+                    if (bookdet.eventname == bookData.eventname && bookdet.eventtype == bookData.eventtype) {
+                        console.log('event name and type equal');
+                        await booking.updateOne({ eventname: bookData.eventname, eventtype: bookData.eventtype }, {
+                            $set: {
+                                eventlocation: bookData.location,
+                                eventdate: bookData.eventdate,
+                                noofguest: bookData.guestcount,
+                                starttime: bookData.starttime,
+                                endtime: bookData.endtime,
+                            }
+                        })
+                        let upbook = await booking.findOne({ customername: bookData.username })
+                        console.log(upbook, 'updated booking');
+                        resolve(upbook)
+                    } else {
+                        const newebooking = await new booking({
+                            customername: bookData.username,
+                            eventname: bookData.eventname,
+                            eventtype: bookData.eventtype,
                             eventlocation: bookData.location,
                             eventdate: bookData.eventdate,
                             noofguest: bookData.guestcount,
                             starttime: bookData.starttime,
                             endtime: bookData.endtime,
-                        }
-                    })
-                    let upbook = await booking.findOne({ customername: bookData.username })
-                    console.log(upbook, 'updated booking');
-                    resolve(upbook)
-                    // }
+
+                        })
+                        await newebooking.save().then((data) => {
+                            resolve(data)
+                        })
+                    }
                 }
             } else {
+                console.log('elese case');
                 //         const customer=await User.findOne({ name:bookData.username})
                 //         const selecteventname=await Event_name.findOne({eventname:bookData.eventname})
                 // const selecteventtype=await Event_Type.findOne({eventtype:bookData.eventtype})
@@ -575,6 +630,7 @@ module.exports = {
 
                 } else {
                     let total = evamount
+                    console.log('123', total)
                     resolve(total)
 
                 }
@@ -597,16 +653,21 @@ module.exports = {
                 {
                     $unwind: '$fooditem'
                 },
-               
+
                 {
                     $project: {
                         foodname: '$fooditem.foodname'
+                    }
+                },
+                {
+                    $project: {
+                        image: '$fooditem.image'
                     }
                 }
 
 
 
-             
+
 
                 // {
                 //     $project:{
@@ -617,7 +678,7 @@ module.exports = {
             console.log('1234567', arrayfoodname)
             const upBooking = await booking.updateOne({ customername: userName, eventname: ename, eventtype: etype }, {
                 $set: {
-                    selectedFood:arrayfoodname,
+                    selectedFood: arrayfoodname,
                     totalAmount: eventvalue.total,
                     status: 'Pending'
                 }
@@ -670,6 +731,35 @@ module.exports = {
             const edata = await Event.findOne({ eventname: evntdetbooking.eventname, eventtype: evntdetbooking.eventtype }).lean()
             console.log('image11111111111111', edata.image);
             resolve(edata.image)
+        })
+    },
+    selectedEventname: (sId) => {
+        return new Promise(async (resolve, reject) => {
+            await Event_name.findById({ _id: sId }).then((response) => {
+                resolve(response)
+            })
+        })
+
+    },
+    selectedEvent: (EName) => {
+        return new Promise(async (resolve, reject) => {
+            await Event.find({ eventname: EName }).lean().then((response) => {
+                resolve(response)
+            })
+        })
+
+    },
+    getOrderList: (user) => {
+        console.log('getorderlist', user);
+        return new Promise(async (resolve, reject) => {
+            const buser = await booking.find({ customername: user }).lean()
+            console.log('buser', buser);
+            if (buser != null) {
+                resolve(buser)
+            } else {
+                resolve()
+            }
+
         })
     }
 

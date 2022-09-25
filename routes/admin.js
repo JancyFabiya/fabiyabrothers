@@ -41,6 +41,15 @@ console.log(allbooking,'qqqqqq');
 })
 
 
+/* View selected foods */
+router.get('/view_selectedfood/:id',async(req,res)=>{
+  admin = req.session.admin
+
+  const bookingfood=await adminHelpers.findBookingFood(req.params.id)
+  res.render('admin/view_selectedfood',{admin,bookingfood})
+
+})
+
 /* Delete Booking */
 
 router.get('/delete-booking/:id',(req,res)=>{
@@ -158,7 +167,7 @@ router.get('/food_category',(req,res)=>{
   router.post('/food_subcategory',(req,res)=>{
     adminHelpers.addSubCategory(req.body).then((response)=>{
       console.log(response);
-      res.redirect('/admin')
+      res.redirect('/admin/food_subcategory')
     })
   })
 // router.get('/food_category',(res,req)=>{
